@@ -10,18 +10,18 @@ const app_config = JSON.parse(fs.readFileSync('./src/app.config.json', 'utf-8'))
 const db = {};
 
 const sequelize = new Sequelize(app_config.database, app_config.usu, app_config.pass, {
-    host: app_config.host,
-    port: app_config.port,
-    dialect: app_config.dialect,
-    operatorsAliases: 0,
-    define: {
-        hooks: {
-            beforeFind: (opt)=>{
-                if(!opt.where) opt.where = { Status: 1 }
-                else opt.where.Status = 1;
-            }
-        }
+  host: app_config.host,
+  port: app_config.port,
+  dialect: app_config.dialect,
+  operatorsAliases: 0,
+  define: {
+    hooks: {
+      beforeFind: (opt) => {
+        if (!opt.where) opt.where = { Status: 1 }
+        else opt.where.Status = 1;
+      }
     }
+  }
 });
 
 db.Sequelize = Sequelize;

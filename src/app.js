@@ -26,12 +26,12 @@ app.use(cors());
 
 //routes
 app.get('/', (req, res) => {
-    res.json({
-        name: app.get('pkg').name,
-        author: app.get('pkg').author,
-        description: app.get('pkg').description,
-        version: app.get('pkg').version
-    });
+	res.json({
+		name: app.get('pkg').name,
+		author: app.get('pkg').author,
+		description: app.get('pkg').description,
+		version: app.get('pkg').version
+	});
 });
 
 app.use('/api/cities', CitiesRoutes);
@@ -39,13 +39,12 @@ app.use('/api/types', TypesRoutes);
 app.use('/api/restrictions', RestrictionsRoutes);
 
 db.sequelize.sync()
-.then(result => {
-    app.listen(app.get('port'), ()=>{
-        console.log(`[port: ${app.get('port')}] server running...`);
-    })
-}).catch(err => {
-    console.log(err);
-});
-
+	.then(result => {
+		app.listen(app.get('port'), () => {
+			console.log(`[port: ${app.get('port')}] server running...`);
+		})
+	}).catch(err => {
+		console.log(err);
+	});
 
 export default app;
