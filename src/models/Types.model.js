@@ -23,6 +23,13 @@ export default (sequelize, DataTypes) => {
                 notEmpty: true
             }
         },
+        Icon: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                notEmpty: false
+            }
+        },
         Status: {
             type: DataTypes.INTEGER,
             allowNull: false,
