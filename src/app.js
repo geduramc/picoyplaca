@@ -16,7 +16,7 @@ const app_config = JSON.parse(fs.readFileSync('./src/app.config.json', 'utf-8'))
 const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 
 //settings
-app.set('port', app_config.app.port || process.env.PORT);
+app.set('port', process.env.PORT || app_config.app.port);
 app.set('pkg', pkg);
 
 //middlewares
