@@ -1,5 +1,7 @@
-export default (sequelize, DataTypes) => {
-  const ParametersModel = sequelize.define('Parameters', {
+import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize'
+
+export default (sequelize: Sequelize): ModelCtor<Model> => {
+  const TypesModel = sequelize.define('Types', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -9,25 +11,25 @@ export default (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    Code: {
+    TypeName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    Description: {
+    TypeDescription: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    Value: {
+    Icon: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
-        notEmpty: true
+        notEmpty: false
       }
     },
     Status: {
@@ -38,11 +40,11 @@ export default (sequelize, DataTypes) => {
       }
     }
   },
-    {
-      modelName: 'Parameters',
-      timestamps: false,
-      underscored: false,
-    });
+  {
+    modelName: 'Types',
+    timestamps: false,
+    underscored: false
+  })
 
-  return ParametersModel;
-};
+  return TypesModel
+}

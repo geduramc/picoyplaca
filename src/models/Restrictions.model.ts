@@ -1,4 +1,6 @@
-export default (sequelize, DataTypes) => {
+import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize'
+
+export default (sequelize: Sequelize): ModelCtor<Model> => {
   const RestrictionsModel = sequelize.define('Restrictions', {
     Id: {
       type: DataTypes.INTEGER,
@@ -78,11 +80,11 @@ export default (sequelize, DataTypes) => {
       allowNull: false
     }
   },
-    {
-      modelName: 'Restrictions',
-      timestamps: false,
-      underscored: false,
-    });
+  {
+    modelName: 'Restrictions',
+    timestamps: false,
+    underscored: false
+  })
 
-  return RestrictionsModel;
-};
+  return RestrictionsModel
+}

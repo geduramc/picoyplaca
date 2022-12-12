@@ -1,4 +1,6 @@
-export default (sequelize, DataTypes) => {
+import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize'
+
+export default (sequelize: Sequelize): ModelCtor<Model> => {
   const CitiesModel = sequelize.define('Cities', {
     Id: {
       type: DataTypes.INTEGER,
@@ -24,16 +26,11 @@ export default (sequelize, DataTypes) => {
       }
     }
   },
-    {
-      modelName: 'Cities',
-      timestamps: false,
-      underscored: false,
-    });
+  {
+    modelName: 'Cities',
+    timestamps: false,
+    underscored: false
+  })
 
-  CitiesModel.associate = (models) => {
-    CitiesModel.hasMany(models.RestrictionsModel, { foreignKey: 'CityId' });
-    models.RestrictionsModel.belongsTo(CitiesModel, { as: 'City' });
-  };
-
-  return CitiesModel;
-};
+  return CitiesModel
+}
