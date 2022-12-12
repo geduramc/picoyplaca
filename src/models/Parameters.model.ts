@@ -1,5 +1,7 @@
-export default (sequelize, DataTypes) => {
-  const TypesModel = sequelize.define('Types', {
+import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize'
+
+export default (sequelize: Sequelize): ModelCtor<Model> => {
+  const ParametersModel = sequelize.define('Parameters', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -9,25 +11,25 @@ export default (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    TypeName: {
+    Code: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    TypeDescription: {
+    Description: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    Icon: {
+    Value: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       validate: {
-        notEmpty: false
+        notEmpty: true
       }
     },
     Status: {
@@ -38,16 +40,11 @@ export default (sequelize, DataTypes) => {
       }
     }
   },
-    {
-      modelName: 'Types',
-      timestamps: false,
-      underscored: false,
-    });
+  {
+    modelName: 'Parameters',
+    timestamps: false,
+    underscored: false
+  })
 
-  TypesModel.associate = (models) => {
-    TypesModel.hasMany(models.RestrictionsModel, { foreignKey: 'TypeId' });
-    models.RestrictionsModel.belongsTo(TypesModel, { as: 'Type' });
-  };
-
-  return TypesModel;
-};
+  return ParametersModel
+}

@@ -10,5 +10,9 @@
     "database": "bkysy5vwpfan1whxsrgm",
     "dialect": "mysql"
   },
+  "telegram_channel": {
+    "api_token": "5829604978:AAENUdegEMHlIm8Wnbl-dKnP1KjHZJpEk38",
+    "chat_id": "@picoyplaca_colombia"
+  },
   "jwtconfig": {}
 }
