@@ -22,27 +22,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const EmailService = __importStar(require("../services/Email.service"));
-const general_response_1 = __importDefault(require("../utils/general_response"));
+const MessageService = __importStar(require("../services/Message.service"));
+const GeneralResponse = __importStar(require("../utils/GeneralResponse.util"));
 exports.default = () => {
     const router = (0, express_1.Router)();
     router.post('/', (req, res) => {
         try {
             const { sender, date, message } = req.body;
-            EmailService.sendEmail({ sender, date, message })
+            MessageService.sendMessage({ sender, date, message })
                 .then((data) => {
-                res.json((0, general_response_1.default)(true, 'Success', data));
+                res.send(GeneralResponse.ok(data));
             }).catch(err => {
                 throw new Error(err);
             });
         }
         catch (err) {
-            res.status(400).json((0, general_response_1.default)(false, 'Error sending message', err));
+            res.status(400).send(GeneralResponse.error('Error sending message'));
         }
     });
     return router;

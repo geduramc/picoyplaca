@@ -25,15 +25,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const CitiesService = __importStar(require("../services/Cities.service"));
+const GeneralResponse = __importStar(require("../utils/GeneralResponse.util"));
 exports.default = () => {
     const router = (0, express_1.Router)();
     router.get('/', (_req, res) => {
         CitiesService.getAll()
             .then((data) => {
-            res.json(data);
+            res.send(GeneralResponse.ok(data));
         })
             .catch((err) => {
-            res.json(err);
+            res.status(400).send(GeneralResponse.error(err));
         });
     });
     return router;

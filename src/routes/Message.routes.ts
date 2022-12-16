@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as EmailService from '../services/Email.service'
+import * as MessageService from '../services/Message.service'
 import * as GeneralResponse from '../utils/GeneralResponse.util'
 
 export default (): Router => {
@@ -8,7 +8,7 @@ export default (): Router => {
   router.post('/', (req, res) => {
     try {
       const { sender, date, message } = req.body
-      EmailService.sendEmail({ sender, date, message })
+      MessageService.sendMessage({ sender, date, message })
         .then((data: any) => {
           res.send(GeneralResponse.ok(data))
         }).catch(err => {
