@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import * as RestrictionsService from '../services/Restrictions.service'
+import * as GeneralResponse from '../utils/GeneralResponse.util'
 
 export default (): Router => {
   const router = Router()
@@ -7,20 +8,20 @@ export default (): Router => {
   router.get('/', (_req, res) => {
     RestrictionsService.getAll()
       .then((data) => {
-        res.json(data)
+        res.send(GeneralResponse.ok(data))
       })
       .catch((err) => {
-        res.json(err)
+        res.status(400).send(GeneralResponse.error(err))
       })
   })
 
-  router.post('/getByCityType', (req, res) => {
+  router.get('/getByCityType', (req, res) => {
     RestrictionsService.getByCityType(req.body.CityId, req.body.TypeId)
       .then((data) => {
-        res.json(data)
+        res.send(GeneralResponse.ok(data))
       })
       .catch((err) => {
-        res.json(err)
+        res.status(400).send(GeneralResponse.error(err))
       })
   })
 

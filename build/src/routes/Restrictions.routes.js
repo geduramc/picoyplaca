@@ -25,24 +25,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const RestrictionsService = __importStar(require("../services/Restrictions.service"));
+const GeneralResponse = __importStar(require("../utils/GeneralResponse.util"));
 exports.default = () => {
     const router = (0, express_1.Router)();
     router.get('/', (_req, res) => {
         RestrictionsService.getAll()
             .then((data) => {
-            res.json(data);
+            res.send(GeneralResponse.ok(data));
         })
             .catch((err) => {
-            res.json(err);
+            res.status(400).send(GeneralResponse.error(err));
         });
     });
-    router.post('/getByCityType', (req, res) => {
+    router.get('/getByCityType', (req, res) => {
         RestrictionsService.getByCityType(req.body.CityId, req.body.TypeId)
             .then((data) => {
-            res.json(data);
+            res.send(GeneralResponse.ok(data));
         })
             .catch((err) => {
-            res.json(err);
+            res.status(400).send(GeneralResponse.error(err));
         });
     });
     return router;

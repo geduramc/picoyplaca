@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import * as CitiesService from '../services/Cities.service'
+import * as GeneralResponse from '../utils/GeneralResponse.util'
 
 export default (): Router => {
   const router = Router()
@@ -7,10 +8,10 @@ export default (): Router => {
   router.get('/', (_req, res) => {
     CitiesService.getAll()
       .then((data) => {
-        res.json(data)
+        res.send(GeneralResponse.ok(data))
       })
       .catch((err) => {
-        res.json(err)
+        res.status(400).send(GeneralResponse.error(err))
       })
   })
 
