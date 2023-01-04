@@ -12,10 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAll = void 0;
+exports.getById = exports.getAll = exports.get = void 0;
 const models_1 = __importDefault(require("../models/models"));
-// export const getAll = (): any[] => [{ service: 'Cities Service' }]
+const get = () => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, models_1.default)().CitiesModel.findAll({
+        where: { Status: 1 }
+    });
+});
+exports.get = get;
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     return (0, models_1.default)().CitiesModel.findAll();
 });
 exports.getAll = getAll;
+const getById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return (0, models_1.default)().CitiesModel.findAll({
+        where: { Id: id }
+    });
+});
+exports.getById = getById;

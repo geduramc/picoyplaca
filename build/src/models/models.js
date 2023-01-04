@@ -15,17 +15,15 @@ exports.default = () => {
         host: app_config_json_1.dbconfig.host,
         port: +app_config_json_1.dbconfig.port,
         dialect: app_config_json_1.dbconfig.dialect,
-        operatorsAliases: 0,
-        define: {
-            hooks: {
-                beforeFind: (opt) => {
-                    if (opt.where == null)
-                        opt.where = { Status: 1 };
-                    else
-                        opt.where.Status = 1;
-                }
-            }
-        }
+        operatorsAliases: 0
+        // define: {
+        //   hooks: {
+        //     beforeFind: (opt: any) => {
+        //       if (opt.where == null) opt.where = { Status: 1 }
+        //       else opt.where.Status = 1
+        //     }
+        //   }
+        // }
     });
     db.Sequelize = sequelize_1.Sequelize;
     db.sequelize = sequelize;

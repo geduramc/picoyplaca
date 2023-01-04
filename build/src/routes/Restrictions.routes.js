@@ -29,6 +29,15 @@ const GeneralResponse = __importStar(require("../utils/GeneralResponse.util"));
 exports.default = () => {
     const router = (0, express_1.Router)();
     router.get('/', (_req, res) => {
+        RestrictionsService.get()
+            .then((data) => {
+            res.send(GeneralResponse.ok(data));
+        })
+            .catch((err) => {
+            res.status(400).send(GeneralResponse.error(err));
+        });
+    });
+    router.get('/all', (_req, res) => {
         RestrictionsService.getAll()
             .then((data) => {
             res.send(GeneralResponse.ok(data));
