@@ -4,6 +4,7 @@ import CitiesRoutes from './Cities.routes'
 import TypesRoutes from './Types.routes'
 import RestrictionsRoutes from './Restrictions.routes'
 import MessageRoutes from './Message.routes'
+import endpointsObject from '../constants/endpoints'
 
 export function router (app: ExpressType): void {
   app.get('/', (_, res) => {
@@ -11,7 +12,8 @@ export function router (app: ExpressType): void {
       name: app.get('pkg').name,
       author: app.get('pkg').author,
       description: app.get('pkg').description,
-      version: app.get('pkg').version
+      version: app.get('pkg').version,
+      endpoints: endpointsObject()
     }))
   })
 

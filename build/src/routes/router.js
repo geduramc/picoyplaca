@@ -32,13 +32,15 @@ const Cities_routes_1 = __importDefault(require("./Cities.routes"));
 const Types_routes_1 = __importDefault(require("./Types.routes"));
 const Restrictions_routes_1 = __importDefault(require("./Restrictions.routes"));
 const Message_routes_1 = __importDefault(require("./Message.routes"));
+const endpoints_1 = __importDefault(require("../constants/endpoints"));
 function router(app) {
     app.get('/', (_, res) => {
         res.json(GeneralResponse.ok({
             name: app.get('pkg').name,
             author: app.get('pkg').author,
             description: app.get('pkg').description,
-            version: app.get('pkg').version
+            version: app.get('pkg').version,
+            endpoints: (0, endpoints_1.default)()
         }));
     });
     app.use('/api/cities', (0, Cities_routes_1.default)());

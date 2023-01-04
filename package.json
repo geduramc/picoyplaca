@@ -2,11 +2,10 @@
   "name": "picoyplaca_api",
   "version": "1.0.0",
   "description": "picoyplaca_api to picoyplaca_app",
-  "main": "index.js",
   "scripts": {
-    "tsc": "rm -r build && tsc",
     "start": "node src/index.js",
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts",
+    "tsc": "rm -r build && tsc"
   },
   "keywords": [],
   "author": "geduramc",

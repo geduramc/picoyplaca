@@ -1,5 +1,11 @@
 import db from '../models/models'
 
+export const get = async (): Promise<any> => {
+  return db().RestrictionsModel.findAll({
+    where: { Status: 1 }
+  })
+}
+
 export const getAll = async (): Promise<any> => {
   return db().RestrictionsModel.findAll()
 }
