@@ -13,15 +13,15 @@ export default (): dbConfigTypes => {
     host: dbconfig.host,
     port: +dbconfig.port,
     dialect: dbconfig.dialect as Dialect,
-    operatorsAliases: 0 as unknown as OperatorsAliases,
-    define: {
-      hooks: {
-        beforeFind: (opt: any) => {
-          if (opt.where == null) opt.where = { Status: 1 }
-          else opt.where.Status = 1
-        }
-      }
-    }
+    operatorsAliases: 0 as unknown as OperatorsAliases
+    // define: {
+    //   hooks: {
+    //     beforeFind: (opt: any) => {
+    //       if (opt.where == null) opt.where = { Status: 1 }
+    //       else opt.where.Status = 1
+    //     }
+    //   }
+    // }
   })
 
   db.Sequelize = Sequelize
