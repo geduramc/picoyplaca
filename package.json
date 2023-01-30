@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "ts-node-dev src/index.ts",
-    "tsc": "rm -r build && tsc"
+    "build": "rimraf build/ && tsc"
   },
   "keywords": [],
   "author": "geduramc",
