@@ -163,3 +163,6 @@ yarn-error.log
 
 build/
 .DS_Store
+api/.DS_Store
+app/.DS_Store
+
