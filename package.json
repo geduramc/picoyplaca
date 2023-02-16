@@ -11,8 +11,11 @@
   "scripts": {
     "api:dev": "npm run dev --workspace=api",
     "api:build": "npm run build --workspace=api",
+    "api:start": "npm start --workspace=api",
     "app:dev": "npm run dev --workspace=app",
-    "app:build": "npm run build --workspace=app"
+    "app:build": "npm run build --workspace=app",
+    "build": "npm run api:build && npm run app:build",
+    "start": "npm run api:start"
   },
   "keywords": [],
   "author": "",
