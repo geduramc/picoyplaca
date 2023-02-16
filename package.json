@@ -1,0 +1,34 @@
+{
+  "name": "picoyplaca",
+  "private": true,
+  "version": "1.0.0",
+  "description": "picoyplaca",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "api:dev": "npm run dev --workspace=api",
+    "api:build": "npm run build --workspace=api",
+    "app:dev": "npm run dev --workspace=app",
+    "app:build": "npm run build --workspace=app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-standard": "^12.0.1",
+    "typescript": "^4.8.2",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./api/tsconfig.json"
+    },
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ]
+  }
+}

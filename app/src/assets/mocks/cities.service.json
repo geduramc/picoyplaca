@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 1,
+    "CityName": "Bucaramanga",
+    "Status": 1
+  },
+  {
+    "Id": 2,
+    "CityName": "Medellin",
+    "Status": 1
+  }
+]
