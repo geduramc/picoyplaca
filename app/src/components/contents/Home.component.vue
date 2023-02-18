@@ -40,11 +40,13 @@ export default ({
     const dayNumber = ref(new Date().getDate())
     const year = ref(new Date().getFullYear())
     const loading = ref(true)
+    const currentDate = new Date().toISOString().slice(0, 10)
 
     const state = {
       cities: ref([]),
       types: ref([]),
       number: ref(-1),
+      date: ref(currentDate),
       restrictions: ref([])
     }
 
