@@ -24,5 +24,5 @@ app.use(cors())
 router(app)
 
 app.listen(app.get('port'), () => {
-  console.log(`[port: ${app.get('port') as number}] server running...`)
+  console.log(`🚀 [port: ${app.get('port') as number}] server running...`)
 })

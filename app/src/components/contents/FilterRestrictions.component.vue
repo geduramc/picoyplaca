@@ -1,5 +1,9 @@
 <template>
-  <div class="col-md-4 offset-md-2">
+  <div class="col-md-2 offset-md-3">
+    <label for="cityList">Fecha</label>
+    <input type="date" class="form-control datepicker" v-bind:min="currentDate" v-model="selectedDate">
+  </div>
+  <div class="col-md-2">
     <div class="form-group">
       <label for="cityList">Ciudad</label>
       <div class="dropdown" id="cityList">
@@ -15,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2">
     <div class="form-group">
       <label for="typeList">Tipo</label>
       <div class="dropdown" id="typeList">
@@ -34,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { inject, ref } from 'vue'
+import { inject, ref, watch } from 'vue'
 import CityModel from '@/models/City.model'
 import TypeModel from '@/models/Type.model'
 
@@ -49,6 +53,8 @@ export default {
     const types = ref(state.types as TypeModel[])
     const selectedType = ref({} as TypeModel)
     const isDisabled = ref(true)
+    const currentDate = new Date().toISOString().slice(0, 10)
+    const selectedDate = ref(state.date)
 
     const selectCity = (event) => {
       selectedCity.value = cities.value.find(x => x.Id == event.target.getAttribute('item')) as CityModel
@@ -58,7 +64,7 @@ export default {
       })
 
       if (selectedCity.value.Id > 0) isDisabled.value = false
-      selectedType.value = {} as TypeModel
+      selectedType.value = state.types.value[0]
     }
 
     const selectType = (event) => {
@@ -73,6 +79,16 @@ export default {
       selectedNum.value = event.target.getAttribute('item')
     }
 
+    watch(() => state.types.value, () => {
+      if(selectedType.value.Id === undefined) selectedType.value = state.types.value[0]
+    })
+
+    watch(() => state.date.value, () => {
+      if(state.cities.value.find(x => x.Selected) !== undefined){
+        selectedType.value = state.types.value[0]
+      }
+    })
+
     return {
       cities,
       selectedCity,
@@ -81,6 +97,8 @@ export default {
       numbers,
       selectedNum,
       isDisabled,
+      currentDate,
+      selectedDate,
       selectCity,
       selectType,
       selectNum
@@ -88,4 +106,13 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+
+.datepicker{
+  height: 38px;
+  background-color: var(--default-btn-color);
+  color: var(--text-primary);
+  border: none;
+}
+
+</style>

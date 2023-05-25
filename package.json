@@ -13,7 +13,7 @@
     "api:start": "npm start --workspace=api",
     "app:dev": "npm run dev --workspace=app",
     "app:build": "npm run build --workspace=app",
-    "build": "npm run api:build && npm run app:build",
+    "build": "npm run app:build && npm run api:build",
     "start": "npm run api:start"
   },
   "keywords": [],

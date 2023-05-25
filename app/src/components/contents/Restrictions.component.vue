@@ -46,6 +46,7 @@ export default {
     }
 
     const cityFilter = () => {
+      console.log(state.date.value)
       restrictions.value = restrictionsRef.value
       const citySelected = cities.value.find(x => x.Selected)
       if (citySelected) {
@@ -60,7 +61,6 @@ export default {
 
       //set time-label
       restrictions.value = restrictions.value.map(item => {
-        // const currentTime = new Date().getTime()
         const currentTime = changeTimeZone(new Date(), 'America/Bogota').getTime()
         const startTime = changeTimeZone(new Date(`${currentDate} ${item.StartTime}`), 'America/Bogota').getTime()
         const endTime = changeTimeZone(new Date(`${currentDate} ${item.EndTime}`), 'America/Bogota').getTime()
@@ -72,17 +72,28 @@ export default {
       })
     }
 
+    const typeFilter = () => {
+      const typeSelected = types.value.find(x => x.Selected)
+      if (typeSelected && typeSelected.Id > 0) {
+        restrictions.value = restrictions.value.filter(x => x.TypeId == typeSelected?.Id)
+      }
+      
+      noData.value = (restrictions.value.length <= 0)
+    }
+
     watch(() => state.cities.value, () => {
       cityFilter()
     })
 
     watch(() => state.types.value, () => {
       cityFilter()
-      const typeSelected = types.value.find(x => x.Selected)
-      if (typeSelected && typeSelected.Id > 0) {
-        if (typeSelected) restrictions.value = restrictions.value.filter(x => x.TypeId == typeSelected?.Id)
+      typeFilter()
+    })
+
+    watch(() => state.date.value, () => {
+      if(state.cities.value.find(x => x.Selected) !== undefined){
+        cityFilter()
       }
-      noData.value = (restrictions.value.length <= 0) || (typeSelected === undefined) || false
     })
 
     return {
