@@ -1,14 +1,14 @@
 import { GeneralResponse } from '../types'
 
-export const ok = (_data: any): GeneralResponse => {
+const ok = (_data: any): GeneralResponse => {
   return {
     ok: true,
-    msg: 'Success',
+    msg: 'success',
     data: _data
   }
 }
 
-export const info = (_msg: string, _data: any = null): GeneralResponse => {
+const info = (_msg: string, _data: any = null): GeneralResponse => {
   return {
     ok: false,
     msg: _msg,
@@ -16,10 +16,12 @@ export const info = (_msg: string, _data: any = null): GeneralResponse => {
   }
 }
 
-export const error = (_msg: string): GeneralResponse => {
+const error = (_msg: string): GeneralResponse => {
   return {
     ok: false,
     msg: _msg,
     data: []
   }
 }
+
+export const generalResponse = { ok, info, error }

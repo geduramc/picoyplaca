@@ -1,39 +1,35 @@
-import { Router } from 'express'
-import * as CitiesService from '../services/Cities.service'
-import * as GeneralResponse from '../utils/GeneralResponse.util'
+import express from 'express'
+import { generalResponse } from '../utils/GeneralResponse.util'
+import { citiesService } from '../services/Cities.service'
 
-export default (): Router => {
-  const router = Router()
+export const citiesRouter = express.Router()
 
-  router.get('/', (_req, res) => {
-    CitiesService.get()
-      .then((data) => {
-        res.send(GeneralResponse.ok(data))
-      })
-      .catch((err) => {
-        res.status(400).send(GeneralResponse.error(err))
-      })
-  })
+citiesRouter.get('/', (_req, res) => {
+  citiesService.get()
+    .then((data) => {
+      res.send(generalResponse.ok(data))
+    })
+    .catch((err) => {
+      res.status(400).send(generalResponse.error(err))
+    })
+})
 
-  router.get('/all', (_req, res) => {
-    CitiesService.getAll()
-      .then((data) => {
-        res.send(GeneralResponse.ok(data))
-      })
-      .catch((err) => {
-        res.status(400).send(GeneralResponse.error(err))
-      })
-  })
+citiesRouter.get('/all', (_req, res) => {
+  citiesService.getAll()
+    .then((data) => {
+      res.send(generalResponse.ok(data))
+    })
+    .catch((err) => {
+      res.status(400).send(generalResponse.error(err))
+    })
+})
 
-  router.get('/:id', (req, res) => {
-    CitiesService.getById(Number(req.params.id))
-      .then((data) => {
-        res.send(GeneralResponse.ok(data))
-      })
-      .catch((err) => {
-        res.status(400).send(GeneralResponse.error(err))
-      })
-  })
-
-  return router
-}
+citiesRouter.get('/:id', (req, res) => {
+  citiesService.getById(Number(req.params.id))
+    .then((data) => {
+      res.send(generalResponse.ok(data))
+    })
+    .catch((err) => {
+      res.status(400).send(generalResponse.error(err))
+    })
+})

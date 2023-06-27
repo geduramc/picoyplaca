@@ -1,4 +1,4 @@
-export default (): any => {
+export const endpoints = (): Array<object> => {
   return [
     {
       object: 'Cities',

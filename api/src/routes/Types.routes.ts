@@ -1,39 +1,35 @@
-import { Router } from 'express'
-import * as TypesService from '../services/Types.service'
-import * as GeneralResponse from '../utils/GeneralResponse.util'
+import express from 'express'
+import { generalResponse } from '../utils/GeneralResponse.util'
+import { typesService } from '../services/Types.service'
 
-export default (): Router => {
-  const router = Router()
+export const typesRouter = express.Router()
 
-  router.get('/', (_req, res) => {
-    TypesService.get()
-      .then((data) => {
-        res.send(GeneralResponse.ok(data))
-      })
-      .catch((err) => {
-        res.status(400).send(GeneralResponse.error(err))
-      })
-  })
+typesRouter.get('/', (_req, res) => {
+  typesService.get()
+    .then((data) => {
+      res.send(generalResponse.ok(data))
+    })
+    .catch((err) => {
+      res.status(400).send(generalResponse.error(err))
+    })
+})
 
-  router.get('/all', (_req, res) => {
-    TypesService.getAll()
-      .then((data) => {
-        res.send(GeneralResponse.ok(data))
-      })
-      .catch((err) => {
-        res.status(400).send(GeneralResponse.error(err))
-      })
-  })
+typesRouter.get('/all', (_req, res) => {
+  typesService.getAll()
+    .then((data) => {
+      res.send(generalResponse.ok(data))
+    })
+    .catch((err) => {
+      res.status(400).send(generalResponse.error(err))
+    })
+})
 
-  router.get('/:id', (req, res) => {
-    TypesService.getById(Number(req.params.id))
-      .then((data) => {
-        res.send(GeneralResponse.ok(data))
-      })
-      .catch((err) => {
-        res.status(400).send(GeneralResponse.error(err))
-      })
-  })
-
-  return router
-}
+typesRouter.get('/:id', (req, res) => {
+  typesService.getById(Number(req.params.id))
+    .then((data) => {
+      res.send(generalResponse.ok(data))
+    })
+    .catch((err) => {
+      res.status(400).send(generalResponse.error(err))
+    })
+})
