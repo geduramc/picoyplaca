@@ -1,17 +1,19 @@
 import db from '../models/models'
 
-export const get = async (): Promise<any> => {
+const get = async (): Promise<any> => {
   return db().CitiesModel.findAll({
     where: { Status: 1 }
   })
 }
 
-export const getAll = async (): Promise<any> => {
+const getAll = async (): Promise<any> => {
   return db().CitiesModel.findAll()
 }
 
-export const getById = async (id: number): Promise<any> => {
+const getById = async (id: number): Promise<any> => {
   return db().CitiesModel.findAll({
     where: { Id: id }
   })
 }
+
+export const citiesService = { get, getAll, getById }
