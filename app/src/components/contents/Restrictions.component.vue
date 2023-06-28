@@ -81,7 +81,7 @@ h6 .card-title {
 }
 
 @media only screen and (max-device-width: 480px) {
-  .cards {
+  .restrictions {
     padding: 0rem;
   }
 }
