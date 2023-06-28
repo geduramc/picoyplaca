@@ -9,13 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^4.6.1",
-    "jquery": "^3.6.0",
-    "popper.js": "^1.16.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },
-  "devDependencies": {    
+  "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/eslint-config-typescript": "^5.0.2",
