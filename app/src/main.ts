@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css'
 import { createApp } from 'vue'
 import router from './router'
 
@@ -9,4 +8,3 @@ createApp(App)
   .mount('#app')
 
 import './interceptors/RequestInterceptor'
-import 'bootstrap/dist/js/bootstrap.js'
