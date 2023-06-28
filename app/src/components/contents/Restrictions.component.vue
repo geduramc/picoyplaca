@@ -1,6 +1,6 @@
 <template>
   <div class="restrictions">
-    <article class="card" v-for="restriction in restrictions as RestrictionModel[]">
+    <article class="card" v-for="restriction in (restrictions as RestrictionModel[])">
       <h4><i :class="restriction.Type?.Icon"></i> {{ restriction.Type?.TypeName }}</h4>
       <h6 class="card-title">Restricción para placas terminadas en</h6>
       <span class="placa">
@@ -9,6 +9,7 @@
       <h6 class="card-title mb-1">
         Horario: {{ `${restriction.StartTime} a ${restriction.EndTime}` }}
       </h6>
+      <span class="badge" v-if="restriction.TimeLabel.class.length > 0" v-bind:class="restriction.TimeLabel?.class">{{ restriction.TimeLabel?.text }}</span>
     </article>
     <blockquote v-if="restrictions && restrictions.length <= 0">
       <p>Sin restricciones para la fecha...</p>
@@ -24,8 +25,8 @@ export default {
     restrictions: Array
   },
   setup() {
+
     return {
-      
     }
   }
 }
@@ -62,6 +63,21 @@ h6 .card-title {
   padding: .5rem;
   margin-top: .5rem;
   margin-bottom: .5rem;
+}
+
+.badge {
+  padding: 0.2rem;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.danger {
+  background-color: #d81b60;
+}
+
+.success {
+  background-color: #098137;
 }
 
 @media only screen and (max-device-width: 480px) {

@@ -70,23 +70,34 @@ export default {
       filters.value.date = data
     }
 
+    const pad = (number) => {
+      return ('0' + number).slice(-2) 
+    } 
+
     watch(filters.value, () => {
       if(filters.value.city <= 0){
         filteredRestrictions.value = []
         return
       }
 
-      console.log(filters.value.date)
       let data = [...restrictions.value]
       data = data.filter(x => x.CityId == filters.value.city)
       if(filters.value.type > 0) data = data.filter(x => x.TypeId == filters.value.type)
       data = data.filter(x => filters.value.date >= x.StartDate && filters.value.date <= x.EndDate)
-      data = data.filter(x => x.DayApply == new Date().getDay() )
+      data = data.filter(x => x.DayApply == new Date(filters.value.date.replace('-', '/')).getDay())
 
       filteredRestrictions.value = data.map(restriction => {
         const city = cities.value.find(x => x.Id == restriction.CityId)
         const type = types.value.find(x => x.Id == restriction.TypeId)
-        return {...restriction, City: city, Type: type}
+
+        const starTime = Number(restriction.StartTime.replace(/^0+/, '').replaceAll(':',''))
+        const endTime = Number(restriction.EndTime.replace(/^0+/, '').replaceAll(':',''))
+        const currentTime = Number(`${pad(new Date().getHours())}${pad(new Date().getMinutes())}${pad(new Date().getSeconds())}`.replace(/^0+/, ''))
+
+        const labelClass = (filters.value.date == new Date().toISOString().slice(0, 10)) ? (currentTime >= starTime && currentTime <= endTime) ? 'danger' : 'success' : ''
+        const labelText = (filters.value.date == new Date().toISOString().slice(0, 10)) ? (currentTime >= starTime && currentTime <= endTime) ? 'EN HORARIO' : 'FUERA DE HORARIO' : ''
+
+        return {...restriction, City: city, Type: type, TimeLabel: { class: labelClass, text: labelText }}
       })
     })
 
