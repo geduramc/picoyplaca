@@ -84,7 +84,7 @@ export default {
       data = data.filter(x => x.CityId == filters.value.city)
       if(filters.value.type > 0) data = data.filter(x => x.TypeId == filters.value.type)
       data = data.filter(x => filters.value.date >= x.StartDate && filters.value.date <= x.EndDate)
-      data = data.filter(x => x.DayApply == new Date(filters.value.date.replace('-', '/')).getDay())
+      data = data.filter(x => x.DayApply == new Date(filters.value.date.replaceAll('-', '/')).getDay())
 
       filteredRestrictions.value = data.map(restriction => {
         const city = cities.value.find(x => x.Id == restriction.CityId)
