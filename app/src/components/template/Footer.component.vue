@@ -15,7 +15,7 @@ export default {
 </script>
 <style scoped>
 a {
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
   text-decoration: none;
 }
 
