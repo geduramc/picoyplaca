@@ -1,6 +1,6 @@
 <template>
   <footer>
-    By @geduramc &#9749;
+    <a href="https://geduramc.com" target="_blank">By @geduramc</a>
   </footer>
 </template>
 
@@ -14,4 +14,12 @@ export default {
 }
 </script>
 <style scoped>
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 </style>
